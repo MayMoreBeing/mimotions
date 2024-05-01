@@ -2,12 +2,13 @@ name: 刷步数2
 
 on:
   schedule:
-    - cron: '10 3 * * *'
+    - cron: '30 4 * * *'
 
 jobs:
   build:
+    name: start buid
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
+    
 
     steps:
       - name: Checkout codes
