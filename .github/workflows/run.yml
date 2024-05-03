@@ -2,9 +2,9 @@ name: 手动触发无输入
 
 on:
   push:
-    branches: [ main ]
+    branches: [ patch-1 ]
   pull_request:
-    branches: [ main ]
+    branches: [ patch-1 ]
   workflow_dispatch:
 
 jobs:
@@ -14,20 +14,20 @@ jobs:
 
     steps:
       - name: Checkout codes
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Update system and install zsh
         run: |
           sudo -E apt-get -qq update
           sudo -E apt-get install zsh -y
           
       - name: 初始化Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.8
           
       - name: 开始
         run: |
           pip3 install requests
-          user='${{ secrets.USER }}'
-          passwd='${{ secrets.PWD }}'
+          user='${{ secrets.USER_other }}'
+          passwd='${{ secrets.PWD_other }}'
           python3 main.py ${user} ${passwd}
