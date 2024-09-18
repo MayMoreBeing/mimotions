@@ -3,6 +3,7 @@ name: 刷步数2
 on:
   schedule:
     - cron: '0 3 * * *'
+    - cron: '0 5 * * *'
 
 jobs:
   build:
