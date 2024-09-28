@@ -5,7 +5,7 @@ name: run on 3.10
 
 on:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '20 9 * * *'
 
 jobs:
   build:
