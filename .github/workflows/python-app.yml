@@ -1,0 +1,33 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: run on 3.10
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+
+jobs:
+  build:
+    name: start buid
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout codes
+      uses: actions/checkout@v4
+    - name: Update system and install zsh
+      run: |
+        sudo -E apt-get -qq update
+        sudo -E apt-get install zsh -y
+          
+    - name: 初始化Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+          
+    - name: 开始
+      run: |
+          pip3 install requests
+          user='${{ secrets.USER }}'
+          passwd='${{ secrets.PWD }}'
+          python3 main.py ${user} ${passwd}
